@@ -1,0 +1,55 @@
+html,body{
+  height: 100%;
+  width: 100%;
+}
+body {
+  font-size: 13px;
+  color: #54667A;
+  font-family:微软雅黑,Verdana, Microsoft YaHei, Simsun;
+  background:#fff;
+  line-height:24px;
+}
+body,html,div,p,span,ul,li,ol,dl,dt,dd,input,button {
+  padding: 0;
+  margin: 0;
+}
+input,button {
+  border: none;
+  outline: none;
+  background: none;
+}
+fieldset, img {
+  border:none;
+}
+ol, ul,li {
+  list-style:none;
+}
+h1, h2, h3, h4, h5, h6{
+  font-size:100%;
+}
+em {
+  font-style:normal;
+}
+input, button, select, textarea {
+  outline:none;
+}
+textarea {
+  resize:none;
+}
+p{
+  text-align:justify;
+  text-justify:distribute;
+}
+input, select {
+  vertical-align:middle;
+}
+a, a:link, a:visited, a:hover, a:active{
+  text-decoration: none;
+  color: #999;
+}
+.text-hidden{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  white-space: nowrap;
+}
