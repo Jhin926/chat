@@ -47,6 +47,12 @@ a, a:link, a:visited, a:hover, a:active{
   text-decoration: none;
   color: #999;
 }
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
 .text-hidden{
   text-overflow: ellipsis;
   overflow: hidden;
