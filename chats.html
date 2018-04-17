@@ -2,31 +2,36 @@
 <html>
 <head>
   <meta charset="utf-8"/>
-  <title>注册</title>
+  <title>聊天室列表</title>
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
   <link href="css/common.css" rel="stylesheet"/>
   <link href="css/chats.css" rel="stylesheet"/>
 </head>
 <body>
-<hearder>
-  <input type="text" placeholder="关键字搜索"/>
-  <button>点击搜索</button>
-</hearder>
-<section id="default">
-  排序方式：
-  <ul class="sort">
-    <li class="left">距离最近</li>
-    <li class="left">活跃度最高</li>
-    <li class="left">人数最多/少</li>
-  </ul>
-</section>
-<section class="city-list">
-  <ul>
-    <li><a href="./chat.html">聊天室1</a></li>
-    <li><a href="./chat.html">聊天室2</a></li>
-    <li><a href="./chat.html">聊天室3</a></li>
-    <li><a href="./chat.html">聊天室4</a></li>
-  </ul>
-</section>
+<div class="bg">
+  <div class="bg-layer">
+    <header>
+      <input type="text" placeholder="关键字搜索"/>
+      <button>点击搜索</button>
+    </header>
+    <section id="default">
+      排序方式：
+      <ul class="sort">
+        <li class="left">距离最近</li>
+        <li class="left">活跃度最高</li>
+        <li class="left">人数最多/少</li>
+      </ul>
+    </section>
+    <section class="chat-list">
+      <ul>
+        <li><a href="./chat.html">聊天室1</a></li>
+        <li><a href="./chat.html">聊天室2</a></li>
+        <li><a href="./chat.html">聊天室3</a></li>
+        <li><a href="./chat.html">聊天室4</a></li>
+      </ul>
+    </section>
+  </div>
+</div>
 </body>
 <script>
 </script>

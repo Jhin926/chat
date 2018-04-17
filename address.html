@@ -1,39 +1,44 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<title>注册</title>
-	<link href="css/common.css" rel="stylesheet" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+  <title>注册</title>
+  <link href="css/common.css" rel="stylesheet"/>
 </head>
 <body>
-  <header id="default">
-    当前定位城市：<span>上海市</span>
-  </header>
-  <section class="city-list">
-    <header>选择其他城市:</header>
-    <ul>
-      <li><a href="./chats.html">北京</a></li>
-      <li><a href="./chats.html">上海</a></li>
-      <li><a href="./chats.html">深圳</a></li>
-      <li><a href="./chats.html">杭州</a></li>
-      <li><a href="./chats.html">武汉</a></li>
-      <li><a href="./chats.html">郑州</a></li>
-      <li><a href="./chats.html">贵阳</a></li>
-      <li><a href="./chats.html">大连</a></li>
-    </ul>
-  </section>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
-<script>
-  $(function () {
-    $('#default').click(function () {
-      // 位置先用外部接口后期改成自己的接口
-      $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',function(){
-        alert(remote_ip_info.city);//城市
-        $(this).find('span').innerText(remote_ip_info.city);
+<div class="bg">
+  <div class="bg-layer">
+    <header class="header" id="default">
+      当前定位城市：<span>上海市</span>
+    </header>
+    <section class="city-list">
+      <header>选择其他城市:</header>
+      <ul>
+        <li><a href="./chats.html">北京</a></li>
+        <li><a href="./chats.html">上海</a></li>
+        <li><a href="./chats.html">深圳</a></li>
+        <li><a href="./chats.html">杭州</a></li>
+        <li><a href="./chats.html">武汉</a></li>
+        <li><a href="./chats.html">郑州</a></li>
+        <li><a href="./chats.html">贵阳</a></li>
+        <li><a href="./chats.html">大连</a></li>
+      </ul>
+    </section>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script>
+      $(function () {
+        $('#default').click(function () {
+          // 位置先用外部接口后期改成自己的接口
+          $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js', function () {
+            alert(remote_ip_info.city);//城市
+            $(this).find('span').innerText(remote_ip_info.city);
+          });
+        });
       });
-    });
-  });
-</script>
+    </script>
+  </div>
+</div>
 </body>
 <script>
 </script>

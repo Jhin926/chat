@@ -8,6 +8,12 @@
   margin-right: 15px;
   cursor: pointer;
 }
-.city-list {
-  margin-left: 60px;
+.chat-list {
+  background-color: rgba(255,255,255,.3);
+}
+.chat-list li {
+  color: #fff;
+  margin: 0 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.3);
 }

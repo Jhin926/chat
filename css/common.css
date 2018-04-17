@@ -1,12 +1,12 @@
 html,body{
-  height: 100%;
   width: 100%;
+  height: 100%;
 }
 body {
   font-size: 13px;
   color: #54667A;
-  font-family:微软雅黑,Verdana, Microsoft YaHei, Simsun;
-  background:#fff;
+  font-family:'微软雅黑','Verdana', 'Microsoft YaHei', 'Simsun';
+  background-color: #fff;
   line-height:24px;
 }
 body,html,div,p,span,ul,li,ol,dl,dt,dd,input,button {
@@ -45,7 +45,7 @@ input, select {
 }
 a, a:link, a:visited, a:hover, a:active{
   text-decoration: none;
-  color: #999;
+  color: inherit;
 }
 .left {
   float: left;
@@ -58,4 +58,17 @@ a, a:link, a:visited, a:hover, a:active{
   overflow: hidden;
   -webkit-line-clamp: 1;
   white-space: nowrap;
+}
+.bg {
+  width: 100%;
+  height: 100%;
+  background:url(../img/bg.png) no-repeat;
+  background-size: 100%;
+}
+.bg-layer {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0, .3);
+}
+.header {
 }
