@@ -1,0 +1,25 @@
+.sort {
+  overflow: hidden;
+  width: 300px;
+  margin-left: 60px;
+  background-color: #999999;
+}
+.sort li {
+  margin-right: 15px;
+  cursor: pointer;
+}
+.city-list {
+  margin-top: 20px;
+  background-color: rgba(255,255,255,.3);
+}
+.city-list .choice-city {
+  padding: 10px 10px 0;
+  color: #ff7e27;
+  font-size: 15px;
+}
+.city-list li {
+  color: #fff;
+  margin: 0 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.3);
+}
