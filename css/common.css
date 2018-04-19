@@ -8,8 +8,9 @@ body {
   font-family:'微软雅黑','Verdana', 'Microsoft YaHei', 'Simsun';
   background-color: #fff;
   line-height:24px;
+  -webkit-text-size-adjust:none
 }
-body,html,div,p,span,ul,li,ol,dl,dt,dd,input,button {
+body,html,header,div,p,span,ul,li,ol,dl,dt,dd,input,button {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
