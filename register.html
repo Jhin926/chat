@@ -11,10 +11,10 @@
 <body>
   <div class="register-con">
 	  <div>
-		  <input id="mobile" type="text" placeholder="请输入手机号码" />
+		  <input id="mobile" type="text" placeholder="请输入用户名或手机号" />
 	  </div>
 	  <div><input id="pwd" type="password" placeholder="请输入密码" /></div>
-	  <div><button id="login">登录</button></div>
+	  <div><button id="login">注册</button></div>
 	  <div>
 		  <a href="./address.html">以游客身份登录</a>
 	  </div>
@@ -25,7 +25,7 @@
 	  let phoneNo = $('#mobile').val();
 	  let pwd = $('#pwd').val();
 	  if (phoneNo === '') {
-	    alert('请输入手机号');
+	    alert('请输入用户名或手机号');
 		return;
 	  } else {
 	    if (pwd === '') {
@@ -37,8 +37,9 @@
 	    phoneNo,
 		pwd
 	  };
-	  $.post('http://localhost:3000/login', reqData, (data) => {
+	  $.post('http://localhost:3000/register', reqData, (data) => {
 	    if (data.success) {
+		  alert("注册成功");
 		  location.href="./address.html";
 		} else {
 		  alert(data.msg);
