@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var multer = require('multer');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -23,6 +25,14 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(cookieParser('12345'));
+app.use(session({
+  secret: '12345',
+  resave: true,
+  saveUninitialized:true
+}));
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(multer({dest: '/tmp/'}).array('image'));
 
