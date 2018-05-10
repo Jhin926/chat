@@ -6,36 +6,23 @@ const url = 'mongodb://127.0.0.1:27017';
 
 let MongoClient = require('mongodb').MongoClient;
 
-router.get('/', function(req, res, next) {
-  req.session.user = 'yemubing';
-  res.render('index', {
-    title: 'the test for nodejs session' ,
-    name:'12345'
-  });
-  res.send('ggg');
-});
-
-router.post('/', function(req, res, next) {
+router.post('/', function (req, res, next) {
   const reqBody = req.body;
-  console.log('20::::'+req.session.user);
-  res.send('yyy');
-  // req.cookie.ymb = 1;
-  /*if (req.cookie.ymb) {
-    req.cookie.ymb++;
-  } else {
-    req.cookie.ymb = 1;
-  }*/
-
-  /*MongoClient.connect(url, (err, db) => {
-    if (err) throw err;
-    const dbase = db.db('ymb');
-    dbase.collection("users").insertOne(reqBody, (err, res) => {
+  console.log(reqBody);
+  const usrName = req.session.userName;
+  if (usrName !== undefined) {
+    MongoClient.connect(url, (err, db) => {
       if (err) throw err;
-      console.log('创建成功');
-      res.json({"success": true});
-      db.close();
-	  });
-  });*/
+      const dbase = db.db('ymb');
+      dbase.collection("chats").insertOne(reqBody, (err) => {
+        if (err) throw err;
+        res.json({ success: true});
+        db.close();
+      });
+    });
+  } else {
+    res.json({ success: false, msg: '请先登录' });
+  }
 });
 
 module.exports = router;

@@ -58,18 +58,18 @@
 				if ($('#intro').val().trim() !== '') {
 					reqData.intro = $('#intro').val().trim();
 				}
-				$.get('http://localhost:3000/chatadd', (data) => {
-					$.ajax({
-						type: "post",
-						url: 'http://localhost:3000/chatadd',
-						xhrFields: {
-							withCredentials: true // 携带跨域cookie
-						},
-						success: function (data) {
-							console.log(data);
+				$.ajax({
+					type: "post",
+					url: '/chatadd',
+					success: function (data) {
+						if (data.success) {
+							alert('创建成功，即将跳转到聊天室');
+							location.href='chat.html';
+						} else {
+							alert(data.msg);
 						}
-					});
-				})
+					}
+				});
 
 			})
 		});

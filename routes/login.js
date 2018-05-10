@@ -6,9 +6,6 @@ let MongoClient = require('mongodb').MongoClient;
 
 /* GET home page. */
 router.post('/', function(req, res, next) {
-  res.set('Access-Control-Allow-Origin', '*');
-  res.set('Access-Control-Allow-Methods', 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS');
-
   const reqBody = req.body;
 
   MongoClient.connect(url, (err, db) => {
@@ -22,6 +19,8 @@ router.post('/', function(req, res, next) {
         if (result[0].pwd !== reqBody.pwd) {
           res.json({"success": false, "msg": "密码错误"});
         } else {
+          req.session.userName = reqBody.phoneNo;
+          res.cookie('login', true, {httpOnly: false});
           res.json({"success": true});
         }
       }

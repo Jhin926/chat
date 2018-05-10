@@ -5,9 +5,6 @@ const url = 'mongodb://127.0.0.1:27017';
 let MongoClient = require('mongodb').MongoClient;
 
 router.post('/', function(req, res, next) {
-  res.set('Access-Control-Allow-Origin', '*');
-  res.set('Access-Control-Allow-Methods', 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS');
-
   const reqBody = req.body;
 
   MongoClient.connect(url, (err, db) => {

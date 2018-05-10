@@ -8,12 +8,16 @@
   <link href="css/common.css" rel="stylesheet" />
   <link href="css/chats.css" rel="stylesheet" />
   <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+  <script src="js/common.js"></script>
   <script>
     $(function () {
-      const ck = document.cookie;
-      const id = /sessionId=(.+);/.exec(ck)[1];
+      const ckObj = getCk();
+      if (ckObj.login === 'true') {
+        const addChat = $('<a href="chatadd.html">新建聊天室</a>');
+        $('#search').after(addChat);
+      }
       $.get('http://localhost:3000/chatlist' + location.search, (data) => {
-        console.log(data);
+        // console.log(data);
       });
     });
   </script>
@@ -25,7 +29,6 @@
       <header class="header">
         <input type="text" placeholder="关键字搜索" />
         <button id="search">点击搜索</button>
-        <a href="chatadd.html">新建聊天室</a>
       </header>
       <section id="default">
         排序方式：
