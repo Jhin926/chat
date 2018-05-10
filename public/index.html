@@ -37,7 +37,7 @@
 	    phoneNo,
 		pwd
 	  };
-	  $.post('http://localhost:3000/login', reqData, (data) => {
+	  $.post('/login', reqData, (data) => {
 	    if (data.success) {
 		  location.href="./address.html";
 		} else {

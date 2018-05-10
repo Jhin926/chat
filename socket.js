@@ -6,9 +6,7 @@ var cp = require('child_process');
 app.listen(8088);
 cp.exec('start http://localhost:8088');
 
-console.log(1);
-console.log(2);
-console.log(3);
+
 
 function handler (req, res) {
   fs.readFile(__dirname + '/index.html',

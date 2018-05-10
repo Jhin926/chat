@@ -1,2 +1,2 @@
-# chat
-local chat room
+# chat-server
+启动 npm start
