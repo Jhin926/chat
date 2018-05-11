@@ -8,6 +8,7 @@
 }
 .chat-room {
   padding: 0 10px;
+  margin-bottom: 65px;
 }
 .chat-bubble {
   margin-bottom: 5px;
@@ -51,6 +52,14 @@
   border-radius: 10px;
   color: #333;
 }
+footer {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding-top: 5px;
+  background-color: #fff;
+}
 .chat-input {
   margin: 0 8px;
   padding: 0 5px;
@@ -59,4 +68,13 @@
   overflow-x: scroll;
   border-radius: 3px;
   background-color: rgba(0,0,0,.3);
+  outline: none;
+}
+.send-btn {
+  margin: 0 8px;
+  display: flex;
+}
+.send-item {
+  flex: 1;
+  text-align: center;
 }

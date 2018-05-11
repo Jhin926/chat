@@ -16,8 +16,16 @@
         const addChat = $('<a href="chatadd.html">新建聊天室</a>');
         $('#search').after(addChat);
       }
-      $.get('http://localhost:3000/chatlist' + location.search, (data) => {
-        // console.log(data);
+      $.get('chatlist' + location.search, data => {
+        if (data.success) {
+          const chatArr = data.result;
+          chatArr.forEach(i => {
+            const chatDom = $(`<li><a href="./chat.html?id=${i._id}">${i.title}</a></li>`);
+            $('#chas-con').append(chatDom);
+          })
+        } else {
+          alert(data.msg);
+        }
       });
     });
   </script>
@@ -39,20 +47,7 @@
         </ul>
       </section>
       <section class="chat-list">
-        <ul>
-          <li>
-            <a href="./chat.html">聊天室1</a>
-          </li>
-          <li>
-            <a href="./chat.html">聊天室2</a>
-          </li>
-          <li>
-            <a href="./chat.html">聊天室3</a>
-          </li>
-          <li>
-            <a href="./chat.html">聊天室4</a>
-          </li>
-        </ul>
+        <ul id="chas-con"></ul>
       </section>
     </div>
   </div>

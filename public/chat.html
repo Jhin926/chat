@@ -1,87 +1,108 @@
 <!doctype html>
 <html>
+
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
   <title>注册</title>
-  <link href="css/common.css" rel="stylesheet"/>
-  <link href="css/chat.css" rel="stylesheet"/>
+  <link href="css/common.css" rel="stylesheet" />
+  <link href="css/chat.css" rel="stylesheet" />
 </head>
+
 <body>
-<div class="bg">
-  <div class="bg-layer chat-layer">
-    <header class="header chat-tit">
-      <span><</span>
-      聊天室标题
-    </header>
-    <section class="chat-room">
-      <div class="chat-bubble">
-        <div class="chat-head"></div>
-        <div class="chat-cont">
-          <div class="chat-name">盖伦</div>
-          <div class="chat-msg">
-            人在塔在，人在塔不在
+  <div class="bg">
+    <div class="bg-layer chat-layer">
+      <header class="header chat-tit">
+        <span>
+          <</span>
+            聊天室标题
+      </header>
+      <section class="chat-room">
+        <div class="chat-bubble">
+          <div class="chat-head"></div>
+          <div class="chat-cont">
+            <div class="chat-name">盖伦</div>
+            <div class="chat-msg">
+              人在塔在，人在塔不在
+            </div>
           </div>
         </div>
-      </div>
-      <div class="chat-bubble">
-        <div class="chat-head"></div>
-        <div class="chat-cont">
-          <div class="chat-name">嘉文四世</div>
-          <div class="chat-msg">
-            犯我德邦者，虽远必诛
+        <div class="chat-bubble">
+          <div class="chat-head"></div>
+          <div class="chat-cont">
+            <div class="chat-name">嘉文四世</div>
+            <div class="chat-msg">
+              犯我德邦者，虽远必诛
+            </div>
           </div>
         </div>
-      </div>
-      <div class="chat-bubble">
-        <div class="chat-head"></div>
-        <div class="chat-cont">
-          <div class="chat-name">戴安娜</div>
-          <div class="chat-msg">
-            月亮将会升起，夜晚将会永存
+        <div class="chat-bubble">
+          <div class="chat-head"></div>
+          <div class="chat-cont">
+            <div class="chat-name">戴安娜</div>
+            <div class="chat-msg">
+              月亮将会升起，夜晚将会永存
+            </div>
           </div>
         </div>
-      </div>
-      <div class="chat-bubble">
-        <div class="chat-head"></div>
-        <div class="chat-cont">
-          <div class="chat-name">戴安娜</div>
-          <div class="chat-msg">
-            以前他们叫我异教徒，现在他们都死了
+        <div class="chat-bubble">
+          <div class="chat-head"></div>
+          <div class="chat-cont">
+            <div class="chat-name">戴安娜</div>
+            <div class="chat-msg">
+              以前他们叫我异教徒，现在他们都死了
+            </div>
           </div>
         </div>
-      </div>
-      <div class="chat-bubble myself">
-        <div class="chat-head"></div>
-        <div class="chat-cont">
-          <div class="chat-name">木木</div>
-          <div class="chat-msg">
-            我还以为，你从来都不会选我呢
+        <div class="chat-bubble myself">
+          <div class="chat-head"></div>
+          <div class="chat-cont">
+            <div class="chat-name">木木</div>
+            <div class="chat-msg">
+              我还以为，你从来都不会选我呢
+            </div>
           </div>
         </div>
-      </div>
-      <div class="chat-bubble">
-        <div class="chat-head"></div>
-        <div class="chat-cont">
-          <div class="chat-name">亚索</div>
-          <div class="chat-msg">
-            面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，
+        <div class="chat-bubble">
+          <div class="chat-head"></div>
+          <div class="chat-cont">
+            <div class="chat-name">亚索</div>
+            <div class="chat-msg">
+              面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-    <footer>
-      <div class="chat-input" contenteditable="true"></div>
-      <div class="send-btn">
-        <span>图</span>
-        <span>视</span>
-        <span>音</span>
-        <span>址</span>
-      </div>
-    </footer>
+      </section>
+      <footer>
+        <div class="chat-input" contenteditable="true"></div>
+        <div class="send-btn">
+          <span class="send-item">图</span>
+          <span class="send-item">视</span>
+          <span class="send-item">音</span>
+          <span class="send-item">址</span>
+        </div>
+      </footer>
+    </div>
   </div>
-</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+  <script>
+    var socket = io('/');
+    socket.on('get msg', function (data) {
+      var elem = document.createElement("p");
+      elem.id = 'test' + data.idx;
+      elem.innerHTML = data.msg;
+      if (data.frontMsg) {
+        var elem1 = document.createElement("p");
+        elem1.style = "color:red;";
+        elem1.innerHTML = "前端传过去的参数：" + data.frontMsg;
+        document.body.appendChild(elem1);
+      }
+      document.body.appendChild(elem);
+    });
+    function temporary() {
+      socket.emit('temporary msg', { params: '前端参数' });
+    }
+  </script>
 </body>
-<script>
-</script>
+
 </html>

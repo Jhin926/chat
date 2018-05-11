@@ -8,32 +8,32 @@ cp.exec('start http://localhost:8088');
 
 
 
-function handler (req, res) {
+function handler(req, res) {
   fs.readFile(__dirname + '/index.html',
-  function (err, data) {
-    if (err) {
-      res.writeHead(500);
-      return res.end('Error loading index.html');
-    }
+    function (err, data) {
+      if (err) {
+        res.writeHead(500);
+        return res.end('Error loading index.html');
+      }
 
-    res.writeHead(200);
-    res.end(data);
-  });
+      res.writeHead(200);
+      res.end(data);
+    });
 }
 
 io.on('connection', function (socket) {
   let num = 0;
   setInterval(() => {
-	num++;
+    num++;
     socket.emit('news', {
-	  msg: `这是第${num}次推送消息(新电脑骚一波)`,
-	  idx: num
-	});
+      msg: `这是第${num}次推送消息(新电脑骚一波)`,
+      idx: num
+    });
   }, 3000);
   socket.on('temporary msg', function (data) {
     socket.emit('news', {
-	  msg: `这是临时的推送消息`,
-	  frontMsg: JSON.stringify(data)
-	});
+      msg: `这是临时的推送消息`,
+      frontMsg: JSON.stringify(data)
+    });
   });
 });

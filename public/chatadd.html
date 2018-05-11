@@ -61,6 +61,7 @@
 				$.ajax({
 					type: "post",
 					url: '/chatadd',
+					data: reqData,
 					success: function (data) {
 						if (data.success) {
 							alert('创建成功，即将跳转到聊天室');

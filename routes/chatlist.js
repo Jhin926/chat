@@ -6,23 +6,18 @@ let MongoClient = require('mongodb').MongoClient;
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.send(123);
-  const reqBody = req.body;
+  const reqQuery = req.query;
 
   MongoClient.connect(url, (err, db) => {
     if (err) throw err;
     const dbase = db.db('ymb');
-    return;
-    dbase.collection("users").find({ "phoneNo": reqBody.phoneNo }).toArray((err, result) => {
+    const addr = reqQuery.addr ? reqQuery.addr : '1';
+    dbase.collection("chats").find({ "addr": addr }).toArray((err, result) => {
       if (err) throw err;
       if (result.length <= 0) {
-        res.json({ "success": false, "msg": "输入的用户名不存在" });
+        res.json({ "success": false, "msg": "当前城市还没有聊天室，赶紧新建一个吧" });
       } else {
-        if (result[0].pwd !== reqBody.pwd) {
-          res.json({ "success": false, "msg": "密码错误" });
-        } else {
-          res.json({ "success": true });
-        }
+        res.json({ "success": true, result});
       }
       db.close();
     });

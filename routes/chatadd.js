@@ -8,13 +8,12 @@ let MongoClient = require('mongodb').MongoClient;
 
 router.post('/', function (req, res, next) {
   const reqBody = req.body;
-  console.log(reqBody);
-  const usrName = req.session.userName;
-  if (usrName !== undefined) {
+  const userName = req.session.userName;
+  if (userName !== undefined) {
     MongoClient.connect(url, (err, db) => {
       if (err) throw err;
       const dbase = db.db('ymb');
-      dbase.collection("chats").insertOne(reqBody, (err) => {
+      dbase.collection("chats").insertOne(Object.assign(reqBody, {userName: userName}), err => {
         if (err) throw err;
         res.json({ success: true});
         db.close();

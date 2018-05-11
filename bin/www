@@ -7,6 +7,9 @@
 var app = require('../app');
 var debug = require('debug')('myapp:server');
 var http = require('http');
+const url = 'mongodb://127.0.0.1:27017';
+
+let MongoClient = require('mongodb').MongoClient;
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +23,7 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+var io = require('socket.io')(server);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -33,6 +37,43 @@ if (addr==='::') {
   addr = 'localhost'
 }
 console.log(`server is running at:  http://${addr}:${server.address().port}`);
+
+// 连接socket
+io.on('connection', function (socket) {
+  MongoClient.connect(url, (err, db) => {
+    if (err) throw err;
+    const dbase = db.db('ymb');
+    const list = dbase.collection("users");
+
+    list.find({"phoneNo": reqBody.phoneNo}).toArray((err, result) => {
+      if (err) throw err;
+      if (result.length <= 0) {
+        list.insertOne(reqBody, (err, result) => {
+          if (err) throw err;
+          res.json({"success": true});
+          db.close();
+        })
+      } else {
+        res.json({"success": false, "msg": "该用户名/手机号已存在"});
+      }
+    });
+  });
+  /*
+  let num = 0;
+  setInterval(() => {
+    num++;
+    socket.emit('news', {
+      msg: `这是第${num}次推送消息(新电脑骚一波)`,
+      idx: num
+    });
+  }, 3000);
+  socket.on('temporary msg', function (data) {
+    socket.emit('news', {
+      msg: `这是临时的推送消息`,
+      frontMsg: JSON.stringify(data)
+    });
+  });*/
+});
 
 /**
  * Normalize a port into a number, string, or false.
