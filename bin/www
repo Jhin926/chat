@@ -40,39 +40,21 @@ console.log(`server is running at:  http://${addr}:${server.address().port}`);
 
 // 连接socket
 io.on('connection', function (socket) {
-  MongoClient.connect(url, (err, db) => {
-    if (err) throw err;
-    const dbase = db.db('ymb');
-    const list = dbase.collection("users");
+  let hd = socket.request.headers;
+  let roomId = /id=([^&]+)/.exec(hd.referer)[1];
 
-    list.find({"phoneNo": reqBody.phoneNo}).toArray((err, result) => {
-      if (err) throw err;
-      if (result.length <= 0) {
-        list.insertOne(reqBody, (err, result) => {
-          if (err) throw err;
-          res.json({"success": true});
-          db.close();
-        })
-      } else {
-        res.json({"success": false, "msg": "该用户名/手机号已存在"});
-      }
+  socket.on('join', param => {
+    socket.emit('sys', {
+      msg: `${param}进入房间`
+    })
+  })
+
+  socket.on('send msg', function (data) {
+    console.log(data);
+    socket.emit('get msg', {
+      msg: data.params
     });
   });
-  /*
-  let num = 0;
-  setInterval(() => {
-    num++;
-    socket.emit('news', {
-      msg: `这是第${num}次推送消息(新电脑骚一波)`,
-      idx: num
-    });
-  }, 3000);
-  socket.on('temporary msg', function (data) {
-    socket.emit('news', {
-      msg: `这是临时的推送消息`,
-      frontMsg: JSON.stringify(data)
-    });
-  });*/
 });
 
 /**
