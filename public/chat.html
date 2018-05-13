@@ -74,7 +74,9 @@
         </div>
       </section>
       <footer>
-        <div class="chat-input"><input id="msg-input" /></div>
+        <div class="chat-input">
+          <input id="msg-input" />
+        </div>
         <div class="send-btn">
           <span class="send-item">图</span>
           <span class="send-item">视</span>
@@ -88,7 +90,10 @@
   <script src="js/jquery-3.3.1.min.js"></script>
   <script>
     var socket = io('/');
-    socket.emit('join', '游客');
+    // 加入房间
+    socket.on('connect', function () {
+      socket.emit('join', '游客');
+    });
     socket.on('sys', data => {
       let msgDom = $(`<div class="join">--${data.msg}--</div>`);
       $('#chat-room').append(msgDom);
@@ -106,14 +111,14 @@
 
       $('#chat-room').append($(msg)).scrollTop($("#chat-room")[0].scrollHeight);
     });
-    $('#msg-input').keydown(function(e) {
+    $('#msg-input').keydown(function (e) {
       if (e.keyCode === 13) {
 
         socket.emit('send msg', { params: $(this).val() });
         $(this).val('');
         return false;
       }
-      
+
     })
   </script>
 </body>

@@ -15,7 +15,7 @@ let MongoClient = require('mongodb').MongoClient;
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '8089');
 app.set('port', port);
 
 /**
@@ -42,9 +42,12 @@ console.log(`server is running at:  http://${addr}:${server.address().port}`);
 io.on('connection', function (socket) {
   let hd = socket.request.headers;
   let roomId = /id=([^&]+)/.exec(hd.referer)[1];
+  console.log(roomId);
 
   socket.on('join', param => {
-    socket.emit('sys', {
+    socket.join(roomId);
+    console.log(123)
+    socket.to(roomId).emit('sys', {
       msg: `${param}进入房间`
     })
   })
