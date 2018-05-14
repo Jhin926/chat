@@ -68,7 +68,7 @@
           <div class="chat-cont">
             <div class="chat-name">亚索</div>
             <div class="chat-msg">
-              面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，
+              面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风吧，面对疾风ffffffffff吧，
             </div>
           </div>
         </div>
@@ -86,20 +86,17 @@
       </footer>
     </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+  <script src="js/socket.io.js"></script>
   <script src="js/jquery-3.3.1.min.js"></script>
   <script>
-    var socket = io('/');
+    var socket = io();
     // 加入房间
-    socket.on('connect', function () {
-      socket.emit('join', '游客');
-    });
     socket.on('sys', data => {
       let msgDom = $(`<div class="join">--${data.msg}--</div>`);
-      $('#chat-room').append(msgDom);
+      $('#chat-room').append(msgDom).scrollTop($("#chat-room")[0].scrollHeight);
     });
     socket.on('get msg', function (data) {
-      let msg = `<div class="chat-bubble myself">
+      let msg = `<div class="chat-bubble">
           <div class="chat-head"></div>
           <div class="chat-cont">
             <div class="chat-name">木木</div>
@@ -111,15 +108,31 @@
 
       $('#chat-room').append($(msg)).scrollTop($("#chat-room")[0].scrollHeight);
     });
-    $('#msg-input').keydown(function (e) {
-      if (e.keyCode === 13) {
 
-        socket.emit('send msg', { params: $(this).val() });
-        $(this).val('');
-        return false;
-      }
+    // $('#msg-input').keydown(function (e) {
+    //   if (e.keyCode === 13) {
+    //     let msg = `<div class="chat-bubble myself">
+    //       <div class="chat-head"></div>
+    //       <div class="chat-cont">
+    //         <div class="chat-name">木木</div>
+    //         <div class="chat-msg">
+    //           ${$(this).val()}
+    //         </div>
+    //       </div>
+    //     </div>`;
 
-    })
+    //     $('#chat-room').append($(msg)).scrollTop($("#chat-room")[0].scrollHeight);
+    //     socket.emit('send msg', { params: $(this).val() });
+    //     $(this).val('');
+    //     return false;
+    //   }
+    // })
+    $("#chat-room").bind("input propertychange", function () {
+      alert(123);
+    });
+    // document.getElementById('#chat-room').addEventListener('input', function () {
+    //   alert(123456);
+    // })
   </script>
 </body>
 

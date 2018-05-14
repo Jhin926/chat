@@ -41,20 +41,22 @@ console.log(`server is running at:  http://${addr}:${server.address().port}`);
 // 连接socket
 io.on('connection', function (socket) {
   let hd = socket.request.headers;
-  let roomId = /id=([^&]+)/.exec(hd.referer)[1];
-  console.log(roomId);
-
-  socket.on('join', param => {
-    socket.join(roomId);
-    console.log(123)
-    socket.to(roomId).emit('sys', {
-      msg: `${param}进入房间`
-    })
+  let roomId = /id=([^&]+)/.exec(hd.referer);
+  if (Object.is(roomId, null)) {
+    roomId = 0;
+  } else {
+    roomId = roomId[1];
+  }
+  
+  socket.join(roomId, () => {
+    console.log(roomId);
+    io.to(roomId).emit('sys', {
+      msg: `${roomId}进入房间`
+    });
   })
 
   socket.on('send msg', function (data) {
-    console.log(data);
-    socket.emit('get msg', {
+    socket.to(roomId).emit('get msg', {
       msg: data.params
     });
   });
