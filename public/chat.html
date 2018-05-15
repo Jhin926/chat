@@ -7,6 +7,7 @@
   <title>注册</title>
   <link href="css/common.css" rel="stylesheet" />
   <link href="css/chat.css" rel="stylesheet" />
+  <!-- <script src="https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/2.5.1/vconsole.min.js"></script> -->
 </head>
 
 <body>
@@ -75,7 +76,7 @@
       </section>
       <footer>
         <div class="chat-input">
-          <input id="msg-input" />
+          <input id="msg-input" type="text" />
         </div>
         <div class="send-btn">
           <span class="send-item">图</span>
@@ -86,47 +87,32 @@
       </footer>
     </div>
   </div>
-  <script src="js/socket.io.js"></script>
   <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/socket.io.js"></script>
   <script>
     var socket = io();
     // 加入房间
-    socket.on('sys', data => {
-      let msgDom = $(`<div class="join">--${data.msg}--</div>`);
+    socket.on('sys', function (data) {
+      var msgDom = $('<div class="join">--' + data.msg + '--</div>');
       $('#chat-room').append(msgDom).scrollTop($("#chat-room")[0].scrollHeight);
     });
+
     socket.on('get msg', function (data) {
-      let msg = `<div class="chat-bubble">
-          <div class="chat-head"></div>
-          <div class="chat-cont">
-            <div class="chat-name">木木</div>
-            <div class="chat-msg">
-              ${data.msg}
-            </div>
-          </div>
-        </div>`;
+      var msg = '<div class="chat-bubble">\n          <div class="chat-head"></div>\n          <div class="chat-cont">\n            <div class="chat-name">\u6728\u6728</div>\n            <div class="chat-msg">\n              ' + data.msg + '\n            </div>\n          </div>\n        </div>';
 
       $('#chat-room').append($(msg)).scrollTop($("#chat-room")[0].scrollHeight);
     });
 
     $('#msg-input').keydown(function (e) {
       if (e.keyCode === 13) {
-        let msg = `<div class="chat-bubble myself">
-          <div class="chat-head"></div>
-          <div class="chat-cont">
-            <div class="chat-name">木木</div>
-            <div class="chat-msg">
-              ${$(this).val()}
-            </div>
-          </div>
-        </div>`;
+        var msg = '<div class="chat-bubble myself">\n          <div class="chat-head"></div>\n          <div class="chat-cont">\n            <div class="chat-name">\u6728\u6728</div>\n            <div class="chat-msg">\n              ' + $(this).val() + '\n            </div>\n          </div>\n        </div>';
 
         $('#chat-room').append($(msg)).scrollTop($("#chat-room")[0].scrollHeight);
         socket.emit('send msg', { params: $(this).val() });
         $(this).val('');
         return false;
       }
-    })
+    });
   </script>
 </body>
 

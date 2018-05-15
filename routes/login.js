@@ -20,7 +20,7 @@ router.post('/', function(req, res, next) {
           res.json({"success": false, "msg": "密码错误"});
         } else {
           req.session.userName = reqBody.phoneNo;
-          res.cookie('login', true, {httpOnly: true});
+          res.cookie('login', true, {httpOnly: false});
           res.cookie('userName', reqBody.phoneNo, {httpOnly: true});
           res.json({"success": true});
         }

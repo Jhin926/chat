@@ -7,22 +7,24 @@
   <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
   <link href="css/common.css" rel="stylesheet" />
   <link href="css/chats.css" rel="stylesheet" />
-  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/common.js"></script>
+  <!-- <script src="https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/2.5.1/vconsole.min.js"></script> -->
   <script>
+    
     $(function () {
-      const ckObj = getCk();
+      var ckObj = getCk();
       if (ckObj.login === 'true') {
-        const addChat = $('<a href="chatadd.html">新建聊天室</a>');
+        var addChat = $('<a href="chatadd.html">新建聊天室</a>');
         $('#search').after(addChat);
       }
-      $.get('chatlist' + location.search, data => {
+      $.get('chatlist' + location.search, function (data) {
         if (data.success) {
-          const chatArr = data.result;
-          chatArr.forEach(i => {
-            const chatDom = $(`<li><a href="./chat.html?id=${i._id}">${i.title}</a></li>`);
+          var chatArr = data.result;
+          chatArr.forEach(function (i) {
+            var chatDom = $('<li><a href="./chat.html?id=' + i._id + '">' + i.title + '</a></li>');
             $('#chas-con').append(chatDom);
-          })
+          });
         } else {
           alert(data.msg);
         }
@@ -54,4 +56,5 @@
 </body>
 <script>
 </script>
+
 </html>

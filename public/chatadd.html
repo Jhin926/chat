@@ -2,79 +2,78 @@
 <html>
 
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
-	<title>注册</title>
-	<link href="css/common.css" rel="stylesheet" />
-	<link href="css/chat.css" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
+  <title>注册</title>
+  <link href="css/common.css" rel="stylesheet" />
+  <link href="css/chat.css" rel="stylesheet" />
 </head>
 
 <body>
-	<div class="bg">
-		<div class="bg-layer chat-layer">
-			<ul>
-				<li>
-					聊天室标题：
-					<input id="title" type="text" placeholder="请输入聊天室标题" />
-				</li>
-				<li>
-					聊天室地址：
-					<select id="addr">
-						<option value="1">北京</option>
-						<option value="2">上海</option>
-						<option value="3">深圳</option>
-						<option value="4">杭州</option>
-						<option value="5">郑州</option>
-						<option value="6">大连</option>
-					</select>
-				</li>
-				<li>
-					聊天室介绍：
-					<textarea id="intro"></textarea>
-				</li>
-			</ul>
-			<div>
-				<button id='sub'>提交</button>
-			</div>
-		</div>
-	</div>
-	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
-	<script>
-		$(function () {
-			$('#sub').click(() => {
-				if ($('#title').val().trim() === '') {
-					alert("请输入聊天室标题");
-					return;
-				}
-				if ($('#addr').val() === '') {
-					alert("请选择聊天室地址");
-					return;
-				}
+  <div class="bg">
+    <div class="bg-layer chat-layer">
+      <ul>
+        <li>
+          聊天室标题：
+          <input id="title" type="text" placeholder="请输入聊天室标题" />
+        </li>
+        <li>
+          聊天室地址：
+          <select id="addr">
+            <option value="1">北京</option>
+            <option value="2">上海</option>
+            <option value="3">深圳</option>
+            <option value="4">杭州</option>
+            <option value="5">郑州</option>
+            <option value="6">大连</option>
+          </select>
+        </li>
+        <li>
+          聊天室介绍：
+          <textarea id="intro"></textarea>
+        </li>
+      </ul>
+      <div>
+        <button id='sub'>提交</button>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+  <script>
+    $(function () {
+      $('#sub').click(function () {
+        if ($('#title').val().trim() === '') {
+          alert("请输入聊天室标题");
+          return;
+        }
+        if ($('#addr').val() === '') {
+          alert("请选择聊天室地址");
+          return;
+        }
 
-				let reqData = {};
-				reqData.title = $('#title').val().trim();
-				reqData.addr = $('#addr').val();
+        var reqData = {};
+        reqData.title = $('#title').val().trim();
+        reqData.addr = $('#addr').val();
 
-				if ($('#intro').val().trim() !== '') {
-					reqData.intro = $('#intro').val().trim();
-				}
-				$.ajax({
-					type: "post",
-					url: '/chatadd',
-					data: reqData,
-					success: function (data) {
-						if (data.success) {
-							alert('创建成功，即将跳转到聊天室');
-							location.href='chat.html';
-						} else {
-							alert(data.msg);
-						}
-					}
-				});
-
-			})
-		});
-	</script>
+        if ($('#intro').val().trim() !== '') {
+          reqData.intro = $('#intro').val().trim();
+        }
+        $.ajax({
+          type: "post",
+          url: '/chatadd',
+          data: reqData,
+          success: function success(data) {
+            if (data.success) {
+              alert('创建成功，即将跳转到聊天室');
+              location.href = 'chat.html';
+            } else {
+              alert(data.msg);
+            }
+          }
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>

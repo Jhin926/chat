@@ -1,5 +1,5 @@
-function getCk() {
-  var ck = document.cookie;
+function getCk(ck) {
+  console.log(ck);
   var ckArr = ck.split(';');
   var ckObj = {};
   ckArr.forEach(function (i) {
@@ -8,3 +8,5 @@ function getCk() {
   });
   return ckObj;
 }
+
+module.exports = {getCk}

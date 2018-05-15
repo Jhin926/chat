@@ -2,62 +2,62 @@
 <html>
 
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
-	<title>注册</title>
-	<link href="css/common.css" rel="stylesheet" />
-	<link href="css/index.css" rel="stylesheet" />
-	<script src="js/jquery-3.3.1.min.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
+  <title>注册</title>
+  <link href="css/common.css" rel="stylesheet" />
+  <link href="css/index.css" rel="stylesheet" />
+  <script src="js/jquery-3.3.1.min.js"></script>
 </head>
 
 <body>
-	<div class="bg">
-		<div class="bg-layer">
-			<div class="register-con">
-				<div>
-					<input id="mobile" type="text" placeholder="请输入用户名或手机号" />
-				</div>
-				<div>
-					<input id="pwd" type="password" placeholder="请输入密码" />
-				</div>
-				<div>
-					<button id="login">注册</button>
-				</div>
-				<div>
-					<a href="./address.html">以游客身份登录</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<script>
-		$(function () {
-			$('#login').click(() => {
-				let phoneNo = $('#mobile').val();
-				let pwd = $('#pwd').val();
-				if (phoneNo === '') {
-					alert('请输入用户名或手机号');
-					return;
-				} else {
-					if (pwd === '') {
-						alert('请输入密码');
-						return;
-					}
-				}
-				let reqData = {
-					phoneNo,
-					pwd
-				};
-				$.post('http://localhost:3000/register', reqData, (data) => {
-					if (data.success) {
-						alert("注册成功");
-						location.href = "./address.html";
-					} else {
-						alert(data.msg);
-					}
-				});
-			})
-		})
-	</script>
+  <div class="bg">
+    <div class="bg-layer">
+      <div class="register-con">
+        <div>
+          <input id="mobile" type="text" placeholder="请输入用户名或手机号" />
+        </div>
+        <div>
+          <input id="pwd" type="password" placeholder="请输入密码" />
+        </div>
+        <div>
+          <button id="login">注册</button>
+        </div>
+        <div>
+          <a href="./address.html">以游客身份登录</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+      $('#login').click(function () {
+        var phoneNo = $('#mobile').val();
+        var pwd = $('#pwd').val();
+        if (phoneNo === '') {
+          alert('请输入用户名或手机号');
+          return;
+        } else {
+          if (pwd === '') {
+            alert('请输入密码');
+            return;
+          }
+        }
+        var reqData = {
+          phoneNo: phoneNo,
+          pwd: pwd
+        };
+        $.post('http://localhost:3000/register', reqData, function (data) {
+          if (data.success) {
+            alert("注册成功");
+            location.href = "./address.html";
+          } else {
+            alert(data.msg);
+          }
+        });
+      });
+    })
+  </script>
 </body>
 
 </html>

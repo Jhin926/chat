@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('myapp:server');
 var http = require('http');
+const comFn = require('../routes/common.js');
 const url = 'mongodb://127.0.0.1:27017';
 
 let MongoClient = require('mongodb').MongoClient;
@@ -29,7 +30,9 @@ var io = require('socket.io')(server);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(port, {
+
+});
 server.on('error', onError);
 server.on('listening', onListening);
 let addr = server.address().address;
@@ -40,6 +43,10 @@ console.log(`server is running at:  http://${addr}:${server.address().port}`);
 
 // 连接socket
 io.on('connection', function (socket) {
+  const ck = socket.request.headers.cookie;
+  console.log(ck);
+  const userName = comFn.getCk(ck)['userName'];
+  console.log(comFn.getCk(ck));
   let hd = socket.request.headers;
   let roomId = /id=([^&]+)/.exec(hd.referer);
   if (Object.is(roomId, null)) {
