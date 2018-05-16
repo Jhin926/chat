@@ -31,7 +31,6 @@ var io = require('socket.io')(server);
  */
 
 server.listen(port, {
-
 });
 server.on('error', onError);
 server.on('listening', onListening);
@@ -42,11 +41,16 @@ if (addr==='::') {
 console.log(`server is running at:  http://${addr}:${server.address().port}`);
 
 // 连接socket
+let roomInfo = {};
 io.on('connection', function (socket) {
   const ck = socket.request.headers.cookie;
-  console.log(ck);
-  const userName = comFn.getCk(ck)['userName'];
-  console.log(comFn.getCk(ck));
+  let userName = comFn.getCk(ck)['userName'];
+
+  if (userName===undefined) {
+    const randomNo = ~~(Math.random() * 1000000);
+    userName = '游客·' + randomNo;
+  }
+
   let hd = socket.request.headers;
   let roomId = /id=([^&]+)/.exec(hd.referer);
   if (Object.is(roomId, null)) {
@@ -54,17 +58,35 @@ io.on('connection', function (socket) {
   } else {
     roomId = roomId[1];
   }
-  
-  socket.join(roomId, () => {
-    io.to(roomId).emit('sys', {
-      msg: `${roomId}进入房间`
-    });
-  })
+
+  if (roomInfo[roomId] === undefined) {
+    roomInfo[roomId] = [userName];
+  } else {
+    if (roomInfo[roomId].indexOf(userName) < 0) {
+      console.log('6666:' + socket.id)
+      socket.join(roomId, () => {
+        io.to(roomId).emit('sys', {
+          msg: `${userName}进入房间`
+        });
+      });
+      roomInfo[roomId].push(userName);
+    }
+  }
 
   socket.on('send msg', function (data) {
     socket.to(roomId).emit('get msg', {
-      msg: data.params
+      msg: data.params,
+      userName: userName
     });
+  });
+
+  socket.on('disconnect', function(){
+    io.to(roomId).emit('sys', {
+      msg: `${userName}离开房间`
+    });
+
+    const userIdx = roomInfo[roomId].indexOf(userName);
+    roomInfo[roomId].splice(userIdx, 1);
   });
 });
 

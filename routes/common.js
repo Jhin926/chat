@@ -4,7 +4,7 @@ function getCk(ck) {
   var ckObj = {};
   ckArr.forEach(function (i) {
     var kv = i.split('=');
-    ckObj[kv[0]] = kv[1];
+    ckObj[kv[0].replace(/ /g, '')] = kv[1].replace(/ /g, '');
   });
   return ckObj;
 }
