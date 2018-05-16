@@ -9,6 +9,24 @@
   color: #333;
   font-size: 16px;
 }
+.chat-back {
+  float: left;
+  position: relative;
+  width: 30px;
+  height: 100%;
+}
+.chat-back::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 8px;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-left: 1px solid #333;
+  border-top: 1px solid #333;
+  transform: rotateZ(-45deg);
+}
 .chat-room {
   padding: 0 10px;
   flex: 1;

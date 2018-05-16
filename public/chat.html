@@ -14,9 +14,8 @@
   <div class="bg">
     <div class="bg-layer chat-layer">
       <header class="header chat-tit">
-        <span>
-          <</span>
-            聊天室标题
+        <span id="chat-back" class="chat-back"></span>
+        <span id="chat-title"></span>
       </header>
       <section class="chat-room" id="chat-room">
         <!-- <div class="chat-bubble">
@@ -89,7 +88,15 @@
   </div>
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/socket.io.js"></script>
+  <script src="js/common.js"></script>
   <script>
+    var serObj = getSer();
+    $('#chat-title').text(serObj.tit);
+
+    $('#chat-back').click(function () {
+      history.back(-1);
+    });
+
     var socket = io();
     // 加入房间
     socket.on('sys', function (data) {

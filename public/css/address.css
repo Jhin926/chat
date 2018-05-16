@@ -1,3 +1,9 @@
+.address {
+  font-size: 14px;
+}
+.bg-layer.address {
+  background-color: rgba(0,0,0, .5);
+}
 .sort {
   overflow: hidden;
   width: 300px;
@@ -15,7 +21,7 @@
 .city-list .choice-city {
   padding: 10px 10px 0;
   color: #ff7e27;
-  font-size: 15px;
+  font-size: 16px;
 }
 .city-list li {
   color: #fff;

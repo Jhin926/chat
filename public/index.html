@@ -13,19 +13,21 @@
 <body>
   <div class="bg">
     <div class="bg-layer">
-      <div class="login-con">
-        <div class="login-input">
-          <input id="mobile" type="text" placeholder="请输入手机号码" />
-        </div>
-        <div class="login-input">
-          <input id="pwd" type="password" placeholder="请输入密码" />
-        </div>
-        <div>
-          <button id="login">登录</button>
-          <button id="register">注册</button>
-        </div>
-        <div>
-          <a href="./address.html">以游客身份登录</a>
+      <div class="input-con">
+        <div class="login-con">
+          <div class="login-input">
+            <input id="mobile" type="text" placeholder="请输入用户名/手机号码" />
+          </div>
+          <div class="login-input">
+            <input id="pwd" type="password" placeholder="请输入密码" />
+          </div>
+          <div class="btn-con">
+            <button class="btn" id="login">登录</button>
+            <button class="btn" id="register">注册</button>
+          </div>
+          <div class="visitor">
+            <a href="./address.html">--以游客身份登录--</a>
+          </div>
         </div>
       </div>
     </div>
@@ -56,8 +58,30 @@
           }
         });
       });
-      $("#register").click(function () {
-        location.href = "./register.html";
+      $('#register').click(function () {
+        var phoneNo = $('#mobile').val();
+        var pwd = $('#pwd').val();
+        if (phoneNo === '') {
+          alert('请输入用户名或手机号');
+          return;
+        } else {
+          if (pwd === '') {
+            alert('请输入密码');
+            return;
+          }
+        }
+        var reqData = {
+          phoneNo: phoneNo,
+          pwd: pwd
+        };
+        $.post('/register', reqData, function (data) {
+          if (data.success) {
+            alert("注册成功");
+            location.href = "./address.html";
+          } else {
+            alert(data.msg);
+          }
+        });
       });
     });
   </script>

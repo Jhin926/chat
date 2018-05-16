@@ -11,7 +11,6 @@
   <script src="js/common.js"></script>
   <!-- <script src="https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/2.5.1/vconsole.min.js"></script> -->
   <script>
-    
     $(function () {
       var ckObj = getCk();
       if (ckObj.login === 'true') {
@@ -22,7 +21,7 @@
         if (data.success) {
           var chatArr = data.result;
           chatArr.forEach(function (i) {
-            var chatDom = $('<li><a href="./chat.html?id=' + i._id + '">' + i.title + '</a></li>');
+            var chatDom = $('<li><a href="./chat.html?id=' + i._id + '&tit=' + i.title + '">' + i.title + '</a></li>');
             $('#chas-con').append(chatDom);
           });
         } else {
@@ -37,8 +36,8 @@
   <div class="bg">
     <div class="bg-layer">
       <header class="header">
-        <input type="text" placeholder="关键字搜索" />
-        <button id="search">点击搜索</button>
+        <input class="ipt-search" type="text" placeholder="关键字搜索" style="background-color: rgba(0,0,0,.3);" />
+        <button class="btn-search" id="search">搜索</button>
       </header>
       <section id="default">
         排序方式：
@@ -54,7 +53,4 @@
     </div>
   </div>
 </body>
-<script>
-</script>
-
 </html>
