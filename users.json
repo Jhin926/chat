@@ -1,4 +1,4 @@
-{"_id":{"$oid":"5ae2872c88fdcd689fafb678"},"phoneNo":"18885689570","pwd":"123456"}
-{"_id":{"$oid":"5ae2b9ec0933df1f7ca60d63"},"phoneNo":"13898480979","pwd":"123"}
-{"_id":{"$oid":"5ae2bc3a0933df1f7ca60d64"},"phoneNo":"15565533829","pwd":"123456"}
-{"_id":{"$oid":"5ae2bc7513a4ad1f289235fd"},"phoneNo":"13898480970","pwd":"123456"}
+{ "_id" : { "$oid" : "5ae2872c88fdcd689fafb678" }, "phoneNo" : "18885689570", "pwd" : "123456" }
+{ "_id" : { "$oid" : "5ae2b9ec0933df1f7ca60d63" }, "phoneNo" : "13898480979", "pwd" : "123456" }
+{ "_id" : { "$oid" : "5ae2bc3a0933df1f7ca60d64" }, "phoneNo" : "15565533829", "pwd" : "123456" }
+{ "_id" : { "$oid" : "5ae2bc7513a4ad1f289235fd" }, "phoneNo" : "13898480970", "pwd" : "123456" }
