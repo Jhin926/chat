@@ -10,7 +10,7 @@ function getCk() {
 }
 
 function getSer() {
-  var ser = location.search;
+  var ser = location.search.substring(1);
   var serArr = ser.split('&');
   var serObj = {};
   serArr.forEach(function(i) {

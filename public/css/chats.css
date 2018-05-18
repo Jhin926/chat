@@ -1,6 +1,10 @@
 body {
   font-size: 14px;
 }
+.chats-layer {
+  display: flex;
+  flex-direction: column;
+}
 .header.chats-header {
   padding: 10px;
 }
@@ -73,6 +77,7 @@ body {
   border-top: 1px solid rgba(255,255,255,.6);
   border-bottom: 1px solid rgba(255,255,255,.6);
   background-color: rgba(255,255,255,.3);
+  overflow-y: scroll;
 }
 .chat-list li {
   color: #fff;

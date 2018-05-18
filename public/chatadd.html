@@ -4,41 +4,47 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
-  <title>注册</title>
+  <title>新建聊天室</title>
   <link href="css/common.css" rel="stylesheet" />
-  <link href="css/chat.css" rel="stylesheet" />
+  <link href="css/chatadd.css" rel="stylesheet" />
 </head>
 
 <body>
   <div class="bg">
     <div class="bg-layer chat-layer">
-      <ul>
+      <ul class="chatadd-con">
         <li>
-          聊天室标题：
-          <input id="title" type="text" placeholder="请输入聊天室标题" />
+          <label for="title">聊天室标题：</label>
+          <div class="input-chatadd">
+            <input class="input-tit" id="title" type="text" placeholder="请输入聊天室标题" />
+          </div>
         </li>
         <li>
-          聊天室地址：
-          <select id="addr">
-            <option value="1">北京</option>
-            <option value="2">上海</option>
-            <option value="3">深圳</option>
-            <option value="4">杭州</option>
-            <option value="5">郑州</option>
-            <option value="6">大连</option>
-          </select>
+          <label for="addr">聊天室地址：</label>
+          <div class="input-chatadd">
+            <select id="addr" class="input-addr">
+              <option value="1">北京</option>
+              <option value="2">上海</option>
+              <option value="3">深圳</option>
+              <option value="4">杭州</option>
+              <option value="5">郑州</option>
+              <option value="6">大连</option>
+            </select>
+          </div>
         </li>
         <li>
-          聊天室介绍：
-          <textarea id="intro"></textarea>
+          <label for="intro">聊天室介绍：</label>
+          <div class="input-chatadd">
+            <textarea class="input-intro" rows="5" id="intro"></textarea>
+          </div>
         </li>
       </ul>
-      <div>
+      <div class="input-sub">
         <button id='sub'>提交</button>
       </div>
     </div>
   </div>
-  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
   <script>
     $(function () {
       $('#sub').click(function () {
@@ -65,7 +71,7 @@
           success: function success(data) {
             if (data.success) {
               alert('创建成功，即将跳转到聊天室');
-              location.href = 'chat.html';
+              location.href = 'chat.html?id='+data.id+'&tit='+reqData.title;
             } else {
               alert(data.msg);
             }

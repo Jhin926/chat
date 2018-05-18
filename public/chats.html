@@ -12,10 +12,12 @@
   <!-- <script src="https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/2.5.1/vconsole.min.js"></script> -->
   <script>
     $(function () {
-      var q = location.search;
-      function getChatlist(t) {
-        if (t) q = q+'&sortType='+t;
-        $.get('/chatlist' + q, function (data) {
+      var qObj = getSer();
+      var reqParams = {
+        addr: qObj.addr
+      };
+      function getChatlist() {
+        $.get('/chatlist', reqParams, function (data) {
           if (data.success) {
             $('#chas-con').empty();
             var chatArr = data.result;
@@ -29,12 +31,22 @@
         });
       }
 
-
       var ckObj = getCk();
       if (ckObj.login === 'true') {
         var addChat = $('<a href="chatadd.html" class="add-chat"></a>');
         $('#search').after(addChat);
       }
+
+      $('#search').click(function () {
+        var searchVal = $('#ipt-search').val().trim();
+        console.log(searchVal);
+        if (searchVal === '') {
+          delete reqParams.name
+        } else {
+          reqParams.name = searchVal;
+        }
+        getChatlist();
+      })
 
       $('#sort-type').on('click', 'li', function () {
         var t = $(this).text();
@@ -46,9 +58,10 @@
         } else {
           sortType = 'num';
         }
-        // if (q.indexOf(sortType) < 0) {
-          getChatlist(sortType);
-        // }
+
+        reqParams.sortType = sortType;
+
+        getChatlist(sortType);
       });
 
       getChatlist();
@@ -58,9 +71,9 @@
 
 <body>
   <div class="bg">
-    <div class="bg-layer">
+    <div class="bg-layer chats-layer">
       <header class="header chats-header">
-        <input class="ipt-search" type="text" placeholder="关键字搜索" style="background-color: rgba(0,0,0,.3);" />
+        <input class="ipt-search" id="ipt-search" type="text" placeholder="关键字搜索" />
         <button class="btn-search" id="search">搜索</button>
       </header>
       <section class="chats-sort">

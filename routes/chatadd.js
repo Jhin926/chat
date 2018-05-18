@@ -13,9 +13,9 @@ router.post('/', function (req, res, next) {
     MongoClient.connect(url, (err, db) => {
       if (err) throw err;
       const dbase = db.db('ymb');
-      dbase.collection("chats").insertOne(Object.assign(reqBody, {userName: userName}), err => {
+      dbase.collection("chats").insertOne(Object.assign(reqBody, {userName: userName}), (err, result) => {
         if (err) throw err;
-        res.json({ success: true});
+        res.json({ success: true, id: result.ops[0]._id});
         db.close();
       });
     });
