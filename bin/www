@@ -8,7 +8,7 @@ var app = require('../app');
 var debug = require('debug')('myapp:server');
 var http = require('http');
 const comFn = require('../routes/common.js');
-const url = 'mongodb://127.0.0.1:27017';
+const url = 'mongodb://106.12.40.68:27017';
 
 let MongoClient = require('mongodb').MongoClient;
 
