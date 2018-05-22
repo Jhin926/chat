@@ -1,9 +1,0 @@
-{ "_id" : { "$oid" : "5af4fb94ee65a117dc7c9fd5" }, "title" : "北京公共聊天室", "addr" : "1", "intro" : "介绍介绍", "userName" : "15565533829" }
-{ "_id" : { "$oid" : "5af50064ee65a117dc7c9fd6" }, "title" : "北京测试聊天室1", "addr" : "1", "intro" : "188聊天室介绍", "userName" : "18885689570" }
-{ "_id" : { "$oid" : "5af5016bee65a117dc7c9fd7" }, "title" : "北京测试聊天室2", "addr" : "1", "intro" : "138介绍", "userName" : "13898480979" }
-{ "_id" : { "$oid" : "5af50762821ae3163c1db730" }, "title" : "上海公共聊天室", "addr" : "2", "intro" : "介绍介绍介绍", "userName" : "15565533829" }
-{ "_id" : { "$oid" : "5af5079d821ae3163c1db731" }, "title" : "深圳公共聊天室", "addr" : "3", "intro" : "深圳", "userName" : "15565533829" }
-{ "_id" : { "$oid" : "5af507ab821ae3163c1db732" }, "title" : "杭州公共聊天室", "addr" : "4", "intro" : "杭州", "userName" : "15565533829" }
-{ "_id" : { "$oid" : "5af507c2821ae3163c1db733" }, "title" : "郑州公共聊天室", "addr" : "5", "intro" : "郑州", "userName" : "15565533829" }
-{ "_id" : { "$oid" : "5af507cd821ae3163c1db734" }, "title" : "大连公共聊天室", "addr" : "6", "intro" : "大连", "userName" : "15565533829" }
-{ "_id" : { "$oid" : "5af539e9821ae3163c1db735" }, "title" : "上海测试聊天室", "addr" : "2", "intro" : "介绍介绍", "userName" : "15565533829" }
