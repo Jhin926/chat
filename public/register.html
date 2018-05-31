@@ -47,7 +47,7 @@
           phoneNo: phoneNo,
           pwd: pwd
         };
-        $.post('http://localhost:3000/register', reqData, function (data) {
+        $.post('/api/register', reqData, function (data) {
           if (data.success) {
             alert("注册成功");
             location.href = "./address.html";

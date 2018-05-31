@@ -17,7 +17,7 @@
         addr: qObj.addr
       };
       function getChatlist() {
-        $.get('/chatlist', reqParams, function (data) {
+        $.get('/api/chatlist', reqParams, function (data) {
           if (data.success) {
             $('#chas-con').empty();
             var chatArr = data.result;

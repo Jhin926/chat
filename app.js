@@ -37,11 +37,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(multer({dest: '/tmp/'}).array('image'));
 
 app.use('/', index);
-app.use('/users', users);
-app.use('/login', login);
-app.use('/register', register);
-app.use('/chatlist', chatlist);
-app.use('/chatadd', chatadd);
+app.use('/api/users', users);
+app.use('/api/login', login);
+app.use('/api/register', register);
+app.use('/api/chatlist', chatlist);
+app.use('/api/chatadd', chatadd);
 
 
 // catch 404 and forward to error handler

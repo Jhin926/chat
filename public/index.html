@@ -50,7 +50,7 @@
           phoneNo: phoneNo,
           pwd: pwd
         };
-        $.post('/login', reqData, function (data) {
+        $.post('/api/login', reqData, function (data) {
           if (data.success) {
             location.href = "./address.html";
           } else {
@@ -74,7 +74,7 @@
           phoneNo: phoneNo,
           pwd: pwd
         };
-        $.post('/register', reqData, function (data) {
+        $.post('/api/register', reqData, function (data) {
           if (data.success) {
             alert("注册成功");
             location.href = "./address.html";
