@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 var cors = require('cors');
 
-const url = 'mongodb://106.12.40.68:27017';
+// const url = 'mongodb://127.0.0.1:27017';
+const url = require('./config').mgdUrl;
 
 let MongoClient = require('mongodb').MongoClient;
 
@@ -13,7 +14,7 @@ router.post('/', function (req, res, next) {
     MongoClient.connect(url, (err, db) => {
       if (err) throw err;
       const dbase = db.db('ymb');
-      dbase.collection("chats").insertOne(Object.assign(reqBody, {userName: userName}), (err, result) => {
+      dbase.collection("chats").insertOne(Object.assign(reqBody, {userName: userName, hot: 0, numbers: 1}), (err, result) => {
         if (err) throw err;
         res.json({ success: true, id: result.ops[0]._id});
         db.close();

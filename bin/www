@@ -7,10 +7,10 @@
 var app = require('../app');
 var debug = require('debug')('myapp:server');
 var http = require('http');
-const comFn = require('../routes/common.js');
-const url = 'mongodb://106.12.40.68:27017';
-
 let MongoClient = require('mongodb').MongoClient;
+
+const comFn = require('../routes/common.js');
+const url = require('./config').mgdUrl;
 
 /**
  * Get port from environment and store in Express.
@@ -40,6 +40,19 @@ if (addr==='::') {
 }
 console.log(`server is running at:  http://${addr}:${server.address().port}`);
 
+let roomList = [];
+
+MongoClient.connect(url, (err, db) => {
+  if (err) throw err;
+  const dbase = db.db('ymb');
+  dbase.collection("chats").find().toArray((err, result) => {
+    if (err) throw err;
+    roomList = result;
+  });
+});
+
+let roomIdList = roomList.map(i => i._id);
+
 // 连接socket
 let roomInfo = {};
 io.on('connection', function (socket) {
@@ -59,11 +72,10 @@ io.on('connection', function (socket) {
     roomId = roomId[1];
   }
 
-  if (roomInfo[roomId] === undefined) {
-    roomInfo[roomId] = [userName];
+  if (roomIdList.indexOf(roomId) < 0) { // 如果这个id不在已有的聊天室列表里
+    // roomInfo[roomId] = [userName];
   } else {
     if (roomInfo[roomId].indexOf(userName) < 0) {
-      console.log('6666:' + socket.id)
       socket.join(roomId, () => {
         io.to(roomId).emit('sys', {
           msg: `${userName}进入房间`
