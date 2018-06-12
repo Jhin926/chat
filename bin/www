@@ -7,10 +7,6 @@
 var app = require('../app');
 var debug = require('debug')('myapp:server');
 var http = require('http');
-let MongoClient = require('mongodb').MongoClient;
-
-const comFn = require('../routes/common.js');
-const url = require('./config').mgdUrl;
 
 /**
  * Get port from environment and store in Express.
@@ -24,14 +20,13 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-var io = require('socket.io')(server);
+const skt = require('./skt')(server);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port, {
-});
+server.listen(port, {});
 server.on('error', onError);
 server.on('listening', onListening);
 let addr = server.address().address;
@@ -40,67 +35,6 @@ if (addr==='::') {
 }
 console.log(`server is running at:  http://${addr}:${server.address().port}`);
 
-let roomList = [];
-
-MongoClient.connect(url, (err, db) => {
-  if (err) throw err;
-  const dbase = db.db('ymb');
-  dbase.collection("chats").find().toArray((err, result) => {
-    if (err) throw err;
-    roomList = result;
-  });
-});
-
-let roomIdList = roomList.map(i => i._id);
-
-// 连接socket
-let roomInfo = {};
-io.on('connection', function (socket) {
-  const ck = socket.request.headers.cookie;
-  let userName = comFn.getCk(ck)['userName'];
-
-  if (userName===undefined) {
-    const randomNo = ~~(Math.random() * 1000000);
-    userName = '游客·' + randomNo;
-  }
-
-  let hd = socket.request.headers;
-  let roomId = /id=([^&]+)/.exec(hd.referer);
-  if (Object.is(roomId, null)) {
-    roomId = 0;
-  } else {
-    roomId = roomId[1];
-  }
-
-  if (roomIdList.indexOf(roomId) < 0) { // 如果这个id不在已有的聊天室列表里
-    // roomInfo[roomId] = [userName];
-  } else {
-    if (roomInfo[roomId].indexOf(userName) < 0) {
-      socket.join(roomId, () => {
-        io.to(roomId).emit('sys', {
-          msg: `${userName}进入房间`
-        });
-      });
-      roomInfo[roomId].push(userName);
-    }
-  }
-
-  socket.on('send msg', function (data) {
-    socket.to(roomId).emit('get msg', {
-      msg: data.params,
-      userName: userName
-    });
-  });
-
-  socket.on('disconnect', function(){
-    io.to(roomId).emit('sys', {
-      msg: `${userName}离开房间`
-    });
-
-    const userIdx = roomInfo[roomId].indexOf(userName);
-    roomInfo[roomId].splice(userIdx, 1);
-  });
-});
 
 /**
  * Normalize a port into a number, string, or false.
