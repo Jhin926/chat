@@ -32,9 +32,9 @@ router.get('/', function (req, res, next) {
         }
       } else {
         if (sortBy === 'hot') {
-          result = result.sort((p, n) => n.hot - p.hot);
+          result = result.sort((p, n) => reqQuery.sortAsc==='true' ? (n.hot - p.hot) : (p.hot - n.hot));
         } else if (sortBy === 'number') {
-          result = result.sort((p, n) => n.numbers - p.numbers);
+          result = result.sort((p, n) => reqQuery.sortAsc==='true' ? (n.hot - p.hot) : (p.hot - n.hot));
         }
         res.json({ "success": true, result});
       }

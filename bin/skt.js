@@ -16,12 +16,9 @@ function skt(server) {
       dbase.collection("chats").find().toArray((err, result) => {
         if (err) throw err;
 
-        // console.log(result);
-
         let roomIdList = result.map(i => i._id.toString());
         db.close();
         // 连接socket
-        let roomInfo = {};
         const ck = socket.request.headers.cookie;
         let userName = comFn.getCk(ck)['userName'];
 
@@ -39,23 +36,28 @@ function skt(server) {
         }
 
         if (roomIdList.indexOf(roomId) < 0) { // 如果这个id不在已有的聊天室列表里
-          // roomInfo[roomId] = [userName];
+
         } else {
           result.forEach(i => {
             if (i._id.toString() === roomId) {
-              if (i.users.indexOf(userName) < 0) {
+              if (i.users.indexOf(userName) < 0) { // 用户不在当前聊天室
                 socket.join(roomId, () => {
                   io.to(roomId).emit('sys', {
                     msg: `${userName}进入房间`
                   });
                 });
-                // roomInfo[roomId].push(userName);
                 MongoClient.connect(url, (err, db) => {
                   if (err) throw err;
                   const dbase = db.db('ymb');
                   dbase.collection("chats").find({"_id": ObjectID(roomId)}).toArray((err, result) => {
                     if (err) throw err;
-                    console.log(result);
+                    const users = [...result[0].users, userName];
+                    dbase.collection("chats").update({"_id": ObjectID(roomId)}, {$set: {users, 'numbers': users.length}});
+
+                    io.to(roomId).emit('get num', {
+                      num: users.length
+                    });
+                    db.close();
                   });
                 })
               }
@@ -75,8 +77,21 @@ function skt(server) {
             msg: `${userName}离开房间`
           });
 
-          // const userIdx = roomInfo[roomId].indexOf(userName);
-          // roomInfo[roomId].splice(userIdx, 1);
+          MongoClient.connect(url, (err, db) => {
+            if (err) throw err;
+            const dbase = db.db('ymb');
+            dbase.collection("chats").find({"_id": ObjectID(roomId)}).toArray((err, result) => {
+              if (err) throw err;
+              const userIdx = result[0].users.indexOf(userName);
+              result[0].users.splice(userIdx, 1);
+              dbase.collection("chats").update({"_id": ObjectID(roomId)}, {$set: {'users': result[0].users, 'numbers': result[0].users.length}});
+              db.close();
+
+              io.to(roomId).emit('get num', {
+                num: result[0].users.length
+              });
+            });
+          })
         });
       });
     });
