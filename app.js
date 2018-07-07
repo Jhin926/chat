@@ -43,6 +43,7 @@ app.use('/api/register', register);
 app.use('/api/chatlist', chatlist);
 app.use('/api/chatadd', chatadd);
 
+// test sourcetree view
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
