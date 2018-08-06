@@ -1,1 +1,90 @@
-<!-- index.html --><!DOCTYPE html><html lang="en"><head>  <meta charset="utf-8">  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>  <title>Webpack Sample Project</title><link href="css/style.css?4cdf8d8fb05694d3da66" rel="stylesheet"></head><body><div id='root'></div><script type="text/javascript" src="bundle.4cdf.js?4cdf8d8fb05694d3da66"></script></body></html>
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
+  <title>注册</title>
+  <link href="css/common.css" rel="stylesheet" />
+  <link href="css/index.css" rel="stylesheet" />
+  <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+  <div class="bg">
+    <div class="bg-layer">
+      <div class="input-con">
+        <div class="login-con">
+          <div class="login-input">
+            <input id="mobile" type="text" placeholder="请输入用户名/手机号码" />
+          </div>
+          <div class="login-input">
+            <input id="pwd" type="password" placeholder="请输入密码" />
+          </div>
+          <div class="btn-con">
+            <button class="btn" id="login">登录</button>
+            <button class="btn" id="register">注册</button>
+          </div>
+          <div class="visitor">
+            <a href="./address.html">--以游客身份登录--</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+      $('#login').click(function () {
+        var phoneNo = $('#mobile').val();
+        var pwd = $('#pwd').val();
+        if (phoneNo === '') {
+          alert('请输入手机号');
+          return;
+        } else {
+          if (pwd === '') {
+            alert('请输入密码');
+            return;
+          }
+        }
+        var reqData = {
+          phoneNo: phoneNo,
+          pwd: pwd
+        };
+        $.post('/api/login', reqData, function (data) {
+          if (data.success) {
+            location.href = "./address.html";
+          } else {
+            alert(data.msg);
+          }
+        });
+      });
+      $('#register').click(function () {
+        var phoneNo = $('#mobile').val();
+        var pwd = $('#pwd').val();
+        if (phoneNo === '') {
+          alert('请输入用户名或手机号');
+          return;
+        } else {
+          if (pwd === '') {
+            alert('请输入密码');
+            return;
+          }
+        }
+        var reqData = {
+          phoneNo: phoneNo,
+          pwd: pwd
+        };
+        $.post('/api/register', reqData, function (data) {
+          if (data.success) {
+            alert("注册成功");
+            location.href = "./address.html";
+          } else {
+            alert(data.msg);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
