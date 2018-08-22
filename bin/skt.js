@@ -45,7 +45,7 @@ function skt(server) {
             } else {
               result.forEach(i => {
                 if (i._id.toString() === roomId) {
-                  if (i.users.indexOf(userName) < 0) {
+                  if (i.users && i.users.indexOf(userName) < 0) {
                     // 用户不在当前聊天室
                     socket.join(roomId, () => {
                       io.to(roomId).emit("sys", {
