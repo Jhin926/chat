@@ -4,7 +4,7 @@ const socket = require("socket.io");
 
 
 const comFn = require("./common");
-const url = require("./config").mgdUrl;
+const url = require("../config").mgdUrl;
 
 function skt(server) {
   var io = socket(server);
@@ -89,6 +89,7 @@ function skt(server) {
               });
             });
 
+            // 离开房间
             socket.on("disconnect", function() {
               io.to(roomId).emit("sys", {
                 msg: `${userName}离开房间`

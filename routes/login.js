@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const url = require('../bin/config').mgdUrl;
+const url = require('../config').mgdUrl;
 
 let MongoClient = require('mongodb').MongoClient;
 
