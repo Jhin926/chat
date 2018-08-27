@@ -1,10 +1,10 @@
 let MongoClient = require("mongodb").MongoClient;
 var ObjectID = require("mongodb").ObjectID;
-
 const socket = require("socket.io");
-const comFn = require("../routes/common");
 
-const url = require("../routes/config").mgdUrl;
+
+const comFn = require("./common");
+const url = require("./config").mgdUrl;
 
 function skt(server) {
   var io = socket(server);
@@ -104,6 +104,7 @@ function skt(server) {
                     .find({ _id: ObjectID(roomId) })
                     .toArray((err, result) => {
                       if (err) throw err;
+                      console.log(result)
                       if (result[0]) {
                         const userIdx = result[0].users.indexOf(userName);
                         result[0].users.splice(userIdx, 1);

@@ -3,7 +3,7 @@ var router = express.Router();
 var cors = require('cors');
 
 // const url = 'mongodb://127.0.0.1:27017';
-const url = require('./config').mgdUrl;
+const url = require('../bin/config').mgdUrl;
 
 let MongoClient = require('mongodb').MongoClient;
 

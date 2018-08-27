@@ -1,7 +1,7 @@
 function getCk(ck) {
   console.log(ck);
   if (!ck) {
-    retrun ;
+    return ;
   }
   var ckArr = ck.split(';');
   var ckObj = {};

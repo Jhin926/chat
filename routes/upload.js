@@ -1,32 +1,51 @@
+const formidable = require("formidable");
 
-var fs = require('fs');
-var bodyParser = require('body-parser');
+module.exports.upload = function(req, res) {
+  console.log(123);
+  // parse a file upload
+  var form = new formidable.IncomingForm(),
+    files = [],
+    fields = [],
+    docs = [];
+  console.log("start upload");
 
-var express = require('express');
-var router = express.Router();
-router.use('/', function (req, res, next) {
-  res.set('Access-Control-Allow-Origin', '*');
-  res.set('Access-Control-Allow-Methods', 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS');
-  next();
-});
-router.post('/', function (req, res, next) {
-  next();
-},function(req,res){
-  var des_file = __dirname + '/' + req.files[0].originalname;
-  fs.readFile(req.files[0].path, function (err, data) {
-    fs.writeFile(des_file, data, function (err) {
-      if (err) {
-        console.log(err);
-      } else {
-        response = {
-          message: 'file uploaded successfully',
-          filename: req.files[0].originalaname
-        };
-      }
-      res.end(JSON.stringify(response));
-    })
-  })
-});
+  //存放目录
+  // form.uploadDir = "tmp/";
 
+  // form
+  //   .on("field", function(field, value) {
+  //     //console.log(field, value);
+  //     fields.push([field, value]);
+  //   })
+  //   .on("file", function(field, file) {
+  //     console.log(field, file);
+  //     files.push([field, file]);
+  //     docs.push(file);
 
-module.exports = router;
+  //     var types = file.name.split(".");
+  //     var date = new Date();
+  //     var ms = Date.parse(date);
+  //     fs.renameSync(file.path, "tmp/files" + ms + "_" + file.name);
+  //   })
+  //   .on("end", function() {
+  //     console.log("-> upload done");
+  //     res.writeHead(200, {
+  //       "content-type": "text/plain"
+  //     });
+  //     var out = {
+  //       Resopnse: {
+  //         "result-code": 0,
+  //         timeStamp: new Date()
+  //       },
+  //       files: docs
+  //     };
+  //     var sout = JSON.stringify(out);
+  //     res.end(sout);
+  //   });
+
+  form.parse(req, function(err, fields, files) {
+    err && console.log("formidabel error : " + err);
+
+    console.log("parsing done");
+  });
+};
