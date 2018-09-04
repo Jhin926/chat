@@ -18,7 +18,7 @@ var upload = require('./routes/upload.1');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, './'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
@@ -43,6 +43,16 @@ app.use('/api/register', register);
 app.use('/api/chatlist', chatlist);
 app.use('/api/chatadd', chatadd);
 app.use('/api/upload', upload);
+
+
+
+
+// 文件下载
+const download = express.Router().get('/', function (req, res, next) {
+  res.download('./routes/ymb.mp4');
+  // res.send('ffs')
+});
+app.use('/download', download)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
