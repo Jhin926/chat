@@ -1,0 +1,198 @@
+
+> chat-server@1.0.0 start /usr/chat
+> node ./bin/www
+
+server is running at:  http://localhost:8080
+[0mGET / [36m304 [0m8.149 ms - -[0m
+[0mGET /css/common.css [36m304 [0m2.142 ms - -[0m
+[0mGET /css/index.css [36m304 [0m1.019 ms - -[0m
+[0mGET /js/jquery-3.3.1.min.js [36m304 [0m0.758 ms - -[0m
+[0mGET /img/bg.png [32m200 [0m2.792 ms - 651874[0m
+[0mGET / [36m304 [0m1.830 ms - -[0m
+[0mGET /css/common.css [36m304 [0m1.431 ms - -[0m
+[0mGET /css/index.css [36m304 [0m0.553 ms - -[0m
+[0mGET /js/jquery-3.3.1.min.js [36m304 [0m1.138 ms - -[0m
+[0mGET /img/bg.png [32m206 [0m2.371 ms - 1[0m
+[0mGET /img/bg.png [32m206 [0m1.628 ms - 325281[0m
+(node:21917) DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.
+
+/usr/chat/node_modules/_mongodb@3.1.1@mongodb/lib/operations/mongo_client_ops.js:439
+      throw err;
+      ^
+MongoNetworkError: failed to connect to server [127.0.0.1:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]
+    at Pool.<anonymous> (/usr/chat/node_modules/_mongodb-core@3.1.0@mongodb-core/lib/topologies/server.js:562:11)
+    at emitOne (events.js:116:13)
+    at Pool.emit (events.js:211:7)
+    at Connection.<anonymous> (/usr/chat/node_modules/_mongodb-core@3.1.0@mongodb-core/lib/connection/pool.js:316:12)
+    at Object.onceWrapper (events.js:317:30)
+    at emitTwo (events.js:126:13)
+    at Connection.emit (events.js:214:7)
+    at Socket.<anonymous> (/usr/chat/node_modules/_mongodb-core@3.1.0@mongodb-core/lib/connection/connection.js:245:50)
+    at Object.onceWrapper (events.js:315:30)
+    at emitOne (events.js:116:13)
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! chat-server@1.0.0 start: `node ./bin/www`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the chat-server@1.0.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2018-08-07T03_38_41_745Z-debug.log
+
+> chat-server@1.0.0 start /usr/chat
+> node ./bin/www
+
+server is running at:  http://localhost:8080
+[0mGET / [36m304 [0m9.872 ms - -[0m
+[0mGET /css/common.css [36m304 [0m1.555 ms - -[0m
+[0mGET /css/index.css [36m304 [0m0.507 ms - -[0m
+[0mGET /js/jquery-3.3.1.min.js [36m304 [0m0.590 ms - -[0m
+[0mGET /img/bg.png [36m304 [0m0.642 ms - -[0m
+(node:22083) DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.
+
+/usr/chat/node_modules/_mongodb@3.1.1@mongodb/lib/operations/mongo_client_ops.js:439
+      throw err;
+      ^
+MongoNetworkError: failed to connect to server [127.0.0.1:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]
+    at Pool.<anonymous> (/usr/chat/node_modules/_mongodb-core@3.1.0@mongodb-core/lib/topologies/server.js:562:11)
+    at emitOne (events.js:116:13)
+    at Pool.emit (events.js:211:7)
+    at Connection.<anonymous> (/usr/chat/node_modules/_mongodb-core@3.1.0@mongodb-core/lib/connection/pool.js:316:12)
+    at Object.onceWrapper (events.js:317:30)
+    at emitTwo (events.js:126:13)
+    at Connection.emit (events.js:214:7)
+    at Socket.<anonymous> (/usr/chat/node_modules/_mongodb-core@3.1.0@mongodb-core/lib/connection/connection.js:245:50)
+    at Object.onceWrapper (events.js:315:30)
+    at emitOne (events.js:116:13)
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! chat-server@1.0.0 start: `node ./bin/www`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the chat-server@1.0.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2018-08-07T03_42_49_118Z-debug.log
+
+> chat-server@1.0.0 start /usr/chat
+> node ./bin/www
+
+server is running at:  http://localhost:8080
+(node:22168) DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.
+[0mPOST /api/login [32m200 [0m44.597 ms - 53[0m
+[0mGET / [32m200 [0m6.155 ms - 2421[0m
+[0mGET / [32m200 [0m1.526 ms - 2421[0m
+[0mGET / [32m200 [0m1.148 ms - 2421[0m
+[0mGET / [32m200 [0m0.783 ms - 2421[0m
+
+> chat-server@1.0.0 start /usr/chat
+> node ./bin/www
+
+server is running at:  http://localhost:8080
+[0mGET / [36m304 [0m9.187 ms - -[0m
+[0mGET /css/common.css [36m304 [0m1.488 ms - -[0m
+[0mGET /css/index.css [36m304 [0m0.459 ms - -[0m
+[0mGET /js/jquery-3.3.1.min.js [36m304 [0m0.647 ms - -[0m
+[0mGET /img/bg.png [36m304 [0m0.662 ms - -[0m
+(node:9994) DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.
+
+/usr/chat/node_modules/_mongodb@3.1.1@mongodb/lib/operations/mongo_client_ops.js:439
+      throw err;
+      ^
+MongoNetworkError: failed to connect to server [127.0.0.1:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]
+    at Pool.<anonymous> (/usr/chat/node_modules/_mongodb-core@3.1.0@mongodb-core/lib/topologies/server.js:562:11)
+    at emitOne (events.js:116:13)
+    at Pool.emit (events.js:211:7)
+    at Connection.<anonymous> (/usr/chat/node_modules/_mongodb-core@3.1.0@mongodb-core/lib/connection/pool.js:316:12)
+    at Object.onceWrapper (events.js:317:30)
+    at emitTwo (events.js:126:13)
+    at Connection.emit (events.js:214:7)
+    at Socket.<anonymous> (/usr/chat/node_modules/_mongodb-core@3.1.0@mongodb-core/lib/connection/connection.js:245:50)
+    at Object.onceWrapper (events.js:315:30)
+    at emitOne (events.js:116:13)
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! chat-server@1.0.0 start: `node ./bin/www`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the chat-server@1.0.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2018-08-22T07_18_32_003Z-debug.log
+
+> chat-server@1.0.0 start /usr/chat
+> node ./bin/www
+
+server is running at:  http://localhost:8080
+[0mGET / [32m200 [0m9.971 ms - 2421[0m
+[0mGET /css/index.css [32m200 [0m2.302 ms - 719[0m
+[0mGET /css/common.css [32m200 [0m1.473 ms - 1653[0m
+[0mGET /js/jquery-3.3.1.min.js [32m200 [0m0.718 ms - 86927[0m
+[0mGET /img/bg.png [32m200 [0m0.800 ms - 651874[0m
+(node:10063) DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.
+[0mPOST /api/login [32m200 [0m37.516 ms - 53[0m
+[0mPOST /api/login [32m200 [0m7.065 ms - 53[0m
+[0mPOST /api/login [32m200 [0m4.409 ms - 53[0m
+[0mPOST /api/login [32m200 [0m3.718 ms - 53[0m
+[0mPOST /api/login [32m200 [0m3.448 ms - 53[0m
+[0mGET / [32m200 [0m1.305 ms - 2421[0m
+[0mGET /css/common.css [32m200 [0m3.157 ms - 1653[0m
+[0mGET /css/index.css [32m200 [0m1.151 ms - 719[0m
+[0mGET /js/jquery-3.3.1.min.js [32m200 [0m0.935 ms - 86927[0m
+[0mGET /img/bg.png [32m200 [0m0.866 ms - 651874[0m
+[0mPOST /api/login [32m200 [0m12.618 ms - 53[0m
+[0mPOST /api/login [32m200 [0m3.635 ms - 53[0m
+[0mPOST /api/login [32m200 [0m6.237 ms - 53[0m
+[0mPOST /api/login [32m200 [0m3.524 ms - 53[0m
+[0mPOST /api/login [32m200 [0m3.232 ms - 53[0m
+[0mPOST /api/login [32m200 [0m3.375 ms - 53[0m
+[0mPOST /api/login [32m200 [0m3.242 ms - 53[0m
+[0mPOST /api/login [32m200 [0m4.564 ms - 53[0m
+[0mPOST /api/login [32m200 [0m3.470 ms - 53[0m
+[0mPOST /api/register [32m200 [0m142.324 ms - 16[0m
+[0mGET /api/chatlist?sortBy=&sortAsc=false&key=&addr=1 [32m200 [0m4.862 ms - 80[0m
+[0mPOST /api/login [32m200 [0m14.146 ms - 16[0m
+[0mGET /api/chatlist?sortBy=&sortAsc=true&key=&addr=1 [32m200 [0m3.645 ms - 80[0m
+[0mGET /api/chatlist?sortBy=&sortAsc=false&key=&addr=1 [32m200 [0m3.502 ms - 80[0m
+[0mPOST /api/login [32m200 [0m3.546 ms - 16[0m
+[0mPOST /api/register [32m200 [0m3.387 ms - 57[0m
+[0mPOST /api/login [32m200 [0m3.484 ms - 16[0m
+[0mGET /api/chatlist?sortBy=&sortAsc=true&key=&addr=1 [32m200 [0m3.497 ms - 80[0m
+[0mPOST /api/chatadd [32m200 [0m24.751 ms - 48[0m
+[0mGET / [32m200 [0m0.790 ms - 2421[0m
+[0mGET /css/common.css [32m200 [0m2.970 ms - 1653[0m
+[0mGET /css/index.css [32m200 [0m1.079 ms - 719[0m
+[0mGET /js/jquery-3.3.1.min.js [32m200 [0m0.873 ms - 86927[0m
+[0mGET /img/bg.png [32m200 [0m0.863 ms - 651874[0m
+[0mGET / [32m200 [0m0.860 ms - 2421[0m
+connect.sid=s%3Ao8lPwhnXPbN7DO8jXWfVizHpug07fYH5.MUrsRDaGHX5i8sDIiVbhF%2F6HlT5Lupr%2F6LhvHTh7kwc
+connect.sid=s%3Ao8lPwhnXPbN7DO8jXWfVizHpug07fYH5.MUrsRDaGHX5i8sDIiVbhF%2F6HlT5Lupr%2F6LhvHTh7kwc; io=zg9iVvIPB2SIXEgRAAAA
+/usr/chat/node_modules/_mongodb@3.1.1@mongodb/lib/utils.js:132
+      throw err;
+      ^
+
+TypeError: Cannot read property 'users' of undefined
+    at dbase.collection.find.toArray (/usr/chat/bin/skt.js:85:41)
+    at result (/usr/chat/node_modules/_mongodb@3.1.1@mongodb/lib/utils.js:414:17)
+    at executeCallback (/usr/chat/node_modules/_mongodb@3.1.1@mongodb/lib/utils.js:406:9)
+    at handleCallback (/usr/chat/node_modules/_mongodb@3.1.1@mongodb/lib/utils.js:128:55)
+    at cursor.close (/usr/chat/node_modules/_mongodb@3.1.1@mongodb/lib/operations/cursor_ops.js:218:62)
+    at handleCallback (/usr/chat/node_modules/_mongodb@3.1.1@mongodb/lib/utils.js:128:55)
+    at completeClose (/usr/chat/node_modules/_mongodb@3.1.1@mongodb/lib/cursor.js:887:14)
+    at Cursor.close (/usr/chat/node_modules/_mongodb@3.1.1@mongodb/lib/cursor.js:906:10)
+    at cursor._next (/usr/chat/node_modules/_mongodb@3.1.1@mongodb/lib/operations/cursor_ops.js:218:23)
+    at handleCallback (/usr/chat/node_modules/_mongodb-core@3.1.0@mongodb-core/lib/cursor.js:202:5)
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! chat-server@1.0.0 start: `node ./bin/www`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the chat-server@1.0.0 start script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2018-08-22T08_07_57_185Z-debug.log

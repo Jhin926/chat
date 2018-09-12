@@ -24,7 +24,7 @@ sktCfg(server);
 server.listen(port, {});
 server.on('error', onError);
 server.on('listening', onListening);
-let addr = server.address().address;
+let addr = server.address() ? server.address().address:'::';
 if (addr==='::') {
   addr = 'localhost'
 }
