@@ -7,7 +7,7 @@ var sktCfg = require('./skt.js');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '8080');
+var port = normalizePort(process.env.PORT || '80');
 app.set('port', port);
 
 /**
@@ -28,7 +28,7 @@ let addr = server.address() ? server.address().address:'::';
 if (addr==='::') {
   addr = 'localhost'
 }
-console.log(`server is running at:  http://${addr}:${server.address().port}`);
+// console.log(`server is running at:  http://${addr}:${server.address().port}`);
 
 
 /**
