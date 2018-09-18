@@ -11,7 +11,7 @@ router.post('/', function (req, res, next) {
   const reqBody = req.body;
   const userName = req.session.userName;
   if (userName !== undefined) {
-    MongoClient.connect(url, (err, db) => {
+    MongoClient.connect(url, {useNewUrlParser: true}, (err, db) => {
       if (err) throw err;
       const dbase = db.db('ymb');
       dbase.collection("chats").insertOne(Object.assign(reqBody, {userName: userName, hot: 0, numbers: 1}), (err, result) => {

@@ -1,5 +1,4 @@
 function getCk(ck) {
-  console.log(ck);
   if (!ck) {
     return ;
   }

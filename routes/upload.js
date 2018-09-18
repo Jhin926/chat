@@ -1,51 +1,36 @@
-const formidable = require("formidable");
 
-module.exports.upload = function(req, res) {
-  console.log(123);
-  // parse a file upload
-  var form = new formidable.IncomingForm(),
-    files = [],
-    fields = [],
-    docs = [];
-  console.log("start upload");
+var fs = require('fs');
 
-  //存放目录
-  // form.uploadDir = "tmp/";
 
-  // form
-  //   .on("field", function(field, value) {
-  //     //console.log(field, value);
-  //     fields.push([field, value]);
-  //   })
-  //   .on("file", function(field, file) {
-  //     console.log(field, file);
-  //     files.push([field, file]);
-  //     docs.push(file);
+var express = require('express');
+var router = express.Router();
 
-  //     var types = file.name.split(".");
-  //     var date = new Date();
-  //     var ms = Date.parse(date);
-  //     fs.renameSync(file.path, "tmp/files" + ms + "_" + file.name);
-  //   })
-  //   .on("end", function() {
-  //     console.log("-> upload done");
-  //     res.writeHead(200, {
-  //       "content-type": "text/plain"
-  //     });
-  //     var out = {
-  //       Resopnse: {
-  //         "result-code": 0,
-  //         timeStamp: new Date()
-  //       },
-  //       files: docs
-  //     };
-  //     var sout = JSON.stringify(out);
-  //     res.end(sout);
-  //   });
+router.use('/', function (req, res, next) {
+  res.set('Access-Control-Allow-Origin', '*');
+  res.set('Access-Control-Allow-Headers', 'X-Requested-With');
+  res.set('Access-Control-Allow-Methods', 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS');
+  next();
+});
 
-  form.parse(req, function(err, fields, files) {
-    err && console.log("formidabel error : " + err);
+var multipart = require('connect-multiparty'); //在处理模块中引入第三方解析模块 
+var multipartMiddleware = multipart();
 
-    console.log("parsing done");
-  });
-};
+router.post('/', multipartMiddleware, function (req, res, next) {
+  var des_file = __dirname + `/${req.files.file.originalFilename}`;
+  fs.readFile(req.files.file.path, function (err, data) {
+    fs.writeFile(des_file, data, function (err) {
+      if (err) {
+        res.end('error')
+      } else {
+        response = {
+          message: 'file uploaded successfully',
+          filename: req.files.file.originalaname
+        };
+        res.end(JSON.stringify(response));
+      }
+    })
+  })
+});
+
+
+module.exports = router;

@@ -8,7 +8,7 @@ let MongoClient = require('mongodb').MongoClient;
 router.post('/', function(req, res, next) {
   const reqBody = req.body;
 
-  MongoClient.connect(url, (err, db) => {
+  MongoClient.connect(url, {useNewUrlParser: true}, (err, db) => {
     if (err) throw err;
     const dbase = db.db('ymb');
     dbase.collection("users").find({"phoneNo": reqBody.phoneNo}).toArray((err, result) => {

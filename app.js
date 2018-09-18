@@ -1,12 +1,9 @@
-// 测试merge忽略
-// test merge 222
-// test merge 333
-
 var express = require('express');
 var path = require('path');
 // var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var multer = require('multer'); // 只能接收普通的上传文件，antd的upload组件上传不能接收
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
@@ -17,7 +14,8 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 var chatlist = require('./routes/chatlist');
 var chatadd = require('./routes/chatadd');
-var upload = require('./routes/upload.1');
+var upload = require('./routes/upload');
+// var upload = require('./routes/upload-old'); // 这个需要用form表单上传
 
 var app = express();
 
@@ -39,6 +37,7 @@ app.use(session({
 }));
 
 app.use(express.static(path.join(__dirname, 'dist')));
+// app.use(multer({dest: './tmp/'}).array('image'));
 
 app.use('/', index);
 app.use('/api/users', users);
@@ -47,9 +46,7 @@ app.use('/api/register', register);
 app.use('/api/chatlist', chatlist);
 app.use('/api/chatadd', chatadd);
 app.use('/api/upload', upload);
-
-
-
+// app.use('/api/upload', multer({dest: './tmp/'}).array('image'), upload);
 
 // 文件下载
 const download = express.Router().get('/', function (req, res, next) {

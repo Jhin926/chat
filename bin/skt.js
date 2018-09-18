@@ -12,6 +12,7 @@ function skt(server) {
   io.on("connection", function(socket) {
     MongoClient.connect(
       url,
+      {useNewUrlParser: true},
       (err, db) => {
         if (err) throw err;
         const dbase = db.db("ymb");
@@ -54,6 +55,7 @@ function skt(server) {
                     });
                     MongoClient.connect(
                       url,
+                      {useNewUrlParser: true},
                       (err, db) => {
                         if (err) throw err;
                         const dbase = db.db("ymb");
@@ -97,6 +99,7 @@ function skt(server) {
 
               MongoClient.connect(
                 url,
+                {useNewUrlParser: true},
                 (err, db) => {
                   if (err) throw err;
                   const dbase = db.db("ymb");
@@ -105,7 +108,6 @@ function skt(server) {
                     .find({ _id: ObjectID(roomId) })
                     .toArray((err, result) => {
                       if (err) throw err;
-                      console.log(result)
                       if (result[0]) {
                         const userIdx = result[0].users.indexOf(userName);
                         result[0].users.splice(userIdx, 1);

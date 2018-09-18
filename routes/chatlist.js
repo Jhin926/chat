@@ -9,7 +9,7 @@ let MongoClient = require('mongodb').MongoClient;
 router.get('/', function (req, res, next) {
   const reqQuery = req.query;
 
-  MongoClient.connect(url, (err, db) => {
+  MongoClient.connect(url, {useNewUrlParser: true}, (err, db) => {
     if (err) throw err;
     const dbase = db.db('ymb');
 
