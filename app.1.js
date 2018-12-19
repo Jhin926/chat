@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var mysql = require('mysql');
 var request = require('request');
-// 改特mmp111111222222
+// 改特mmp
 
 // 测试git master分支 merge test分支
 
