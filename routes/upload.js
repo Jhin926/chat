@@ -1,6 +1,5 @@
-
 var fs = require('fs');
-
+const path = require('path');
 
 var express = require('express');
 var router = express.Router();
@@ -16,15 +15,16 @@ var multipart = require('connect-multiparty'); //在处理模块中引入第三�
 var multipartMiddleware = multipart();
 
 router.post('/', multipartMiddleware, function (req, res, next) {
-  var des_file = __dirname + `/${req.files.file.originalFilename}`;
+  var des_file = path.resolve(__dirname, '..') + `/dist/${req.files.file.originalFilename}`;
   fs.readFile(req.files.file.path, function (err, data) {
     fs.writeFile(des_file, data, function (err) {
       if (err) {
         res.end('error')
       } else {
         response = {
-          message: 'file uploaded successfully',
-          filename: req.files.file.originalaname
+          code: 0,
+          message: 'successfully',
+          filePath: 'http://localhost/' + req.files.file.originalFilename
         };
         res.end(JSON.stringify(response));
       }
