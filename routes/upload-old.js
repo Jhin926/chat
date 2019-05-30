@@ -14,6 +14,7 @@ router.post('/', function (req, res, next) {
   next();
 },function(req,res){
   var des_file = path.resolve(__dirname, '../dist') + '/' + req.files[0].originalname;
+  const fileName = req.files[0].originalname;
   fs.readFile(req.files[0].path, function (err, data) {
     fs.writeFile(des_file, data, function (err) {
       if (err) {
@@ -21,6 +22,7 @@ router.post('/', function (req, res, next) {
       } else {
         response = {
           message: 'file uploaded successfully',
+          path: `http://www.yemb.ren/${fileName}`,
           filename: req.files[0].originalaname
         };
       }
