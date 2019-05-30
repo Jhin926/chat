@@ -14,8 +14,8 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 var chatlist = require('./routes/chatlist');
 var chatadd = require('./routes/chatadd');
-var upload = require('./routes/upload');
-// var upload = require('./routes/upload-old'); // 这个需要用form表单上传
+// var upload = require('./routes/upload');
+var upload = require('./routes/upload-old'); // 这个需要用form表单上传
 
 var app = express();
 
@@ -45,8 +45,8 @@ app.use('/api/login', login);
 app.use('/api/register', register);
 app.use('/api/chatlist', chatlist);
 app.use('/api/chatadd', chatadd);
-app.use('/api/upload', upload);
-// app.use('/api/upload', multer({dest: './tmp/'}).array('image'), upload);
+// app.use('/api/upload', upload);
+app.use('/api/upload', multer({dest: './tmp/'}).array('image'), upload);
 
 // 文件下载
 const download = express.Router().get('/', function (req, res, next) {

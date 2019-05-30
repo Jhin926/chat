@@ -1,5 +1,6 @@
 
 var fs = require('fs');
+var path = require('path')
 var bodyParser = require('body-parser');
 
 var express = require('express');
@@ -12,7 +13,7 @@ router.use('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
   next();
 },function(req,res){
-  var des_file = __dirname + '/' + req.files[0].originalname;
+  var des_file = path.resolve(__dirname, '../dist') + '/' + req.files[0].originalname;
   fs.readFile(req.files[0].path, function (err, data) {
     fs.writeFile(des_file, data, function (err) {
       if (err) {
